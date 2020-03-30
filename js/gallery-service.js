@@ -13,7 +13,7 @@ var newProjects = projects.map(function (pro) {
     return pro = {
         id: ++id,
         name: pro,
-        image: id + '.png',
+        image: id + '.PNG',
         description: descriptions[id-1]
         
     }
