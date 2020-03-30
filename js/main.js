@@ -63,7 +63,7 @@ function onRenderModal(proId) {
                       Close Project</button>
    
 
-                     <a href = "/projects/${idx.id}/index.html" target="_blank"> <button class = "btn btn-primary">Show Project</button></a>
+                     <a href = "projects/${idx.id}/index.html" target="_blank"> <button class = "btn btn-primary">Show Project</button></a>
                   </div>
                 </div>
               </div>
