@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css">
+    <title>Document</title>
+</head>
+
+<body onload="onInit()">
+
+    <div name="read" class="read hide">
+        <button onclick="oncloseRead()">close</button>
+        <h1>book name</h1>
+        <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit.
+            Alias soluta eaque aut molestias voluptates eligendi nihil sequi qui.
+            Quisquam distinctio molestias similique illo earum a adipisci odit repudiandae
+            commodi eos.
+        </p>
+    </div>
+    <div class="hide" name="updateModal">
+
+        <p>book name:</p><input name="book-name" type="text">
+        <p>book price:</p> <input name="book-price" type="number">
+        <p>book img url:</p> <input name="book-img" type="text">
+        <p>book id:</p> <input name="book-id" type="text">
+        <button onclick="updateModal()">Update</button>
+        <button onclick="hideModal()">close</button>
+    </div>
+
+
+
+    <div class="main-container">
+        <div class="add-book-form">
+            <button onclick="showToUserInput(this)">add new book</button>
+            <div name="name-price-image-forms" class="hide">
+                <input class="textInput" name="bookName" type="text" placeholder="enter book name">
+                <input class="textInput" name="bookPrice" type="number" placeholder="price">
+                <input class="textInput" name="imgURL" type="text" placeholder="image url">
+                <button onclick="addBookFromUser()" name="addBookBtn">add</button>
+            </div>
+
+        </div>
+        <table>
+            <thead>
+                <th>id</th>
+                <th>name</th>
+                <th>image</th>
+                <th>price</th>
+                <th>Read</th>
+                <th>Update</th>
+                <th>Delete</th>
+            </thead>
+            <tbody class="book-shop"></tbody>
+        </table>
+
+    </div>
+
+    <script src="js/utils-service.js"></script>
+    <script src="js/storageService.js"></script>
+    <script src="js/bookService.js"></script>
+    <script src="js/booksController.js"></script>
+
+</body>
+
+</html>

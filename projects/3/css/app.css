@@ -1,0 +1,66 @@
+body {
+  background-color: black;
+  color: white;
+}
+
+.cell {
+  width: 40px;
+  height: 40px;
+  text-align: center;
+  font-size: 1.5em;
+}
+
+.board-container {
+  margin-top: 5%;
+  margin-left: 37%;
+}
+
+h2 {
+  margin-bottom: none;
+  margin-left: 25%;
+  margin-top: 3%;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+h3 {
+  margin-left: 47%;
+}
+
+button {
+  display: none;
+  margin-top: 2.5%;
+  margin-left: 46%;
+  padding: 10px;
+  background-color: rgb(0, 0, 0);
+  border: 2px solid white;
+  color: white;
+  font-weight: 700;
+  border-radius: 4px;
+}
+
+button:hover {
+  margin-top: 2.5%;
+  margin-left: 46%;
+  padding: 10px;
+  background-color: white;
+  border: 2px solid gray;
+  color: black;
+  font-weight: 700;
+  border-radius: 4px;
+}
+
+td {
+  padding: 10px;
+}
+
+.pacman {
+  background-image: url('../imgs/pacman.png');
+  width: inherit;
+ 
+}
+
+.wall { 
+  background-image: url('../imgs/wall.jpg');
+  width: inherit;
+
+}
