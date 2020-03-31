@@ -2,19 +2,19 @@
 var gBooks = []
 var gBooksSamples = ['The_History_Of_Tomarrow', 'The_Quarantine']
 const KEY = 'books'
+const PAGE_SIZE = 4;
+var gPageIdx = 0;
 
 
 function createBooks() {
     var books = loadFromStorage(KEY)
-    console.log(books);
-
     if (!books || !books.length) {
         books = []
 
         for (var i = 0; i < 4; i++) {
             var bookSample = gBooksSamples[getRandomIntInclusive(0, gBooksSamples.length - 1)]
             var book = _createBook(bookSample, getRandomIntInclusive(5, 30))
-            book.i = i;
+            book.bookImage = 'bookimgs/'+book.bookName +'.jpg';
             books.push(book)
         }
     }
@@ -24,7 +24,9 @@ function createBooks() {
 
 
 function getBooks() {
-    return gBooks
+    var startIdx = gPageIdx * PAGE_SIZE;
+    return gBooks.slice(startIdx, startIdx + PAGE_SIZE)
+    
 }
 
 function _createBook(name, price, img) {
@@ -33,7 +35,8 @@ function _createBook(name, price, img) {
         id: makeId(),
         bookName: name,
         bookPrice: price,
-        bookImage: name + '.jpg'
+        bookImage: img,
+        rate: 0
         // desc: makeLorem()
     }
 }
@@ -69,6 +72,9 @@ function showToUserInput(btn) {
     btn.innerText === 'add new book' ? btn.innerText = 'hide input' : btn.innerText = 'add new book'
     document.querySelector('[name="name-price-image-forms"]').classList.toggle('hide');
 }
+
+
+
 
 
 
@@ -117,4 +123,36 @@ function updateModal() {
 function hideModal() {
     var updateModal = document.querySelector('[name="updateModal"]')
     updateModal.classList.toggle('hide')
+}
+
+
+
+function onChangeRate(value){
+    var rate =  document.querySelector('.rate-value')
+   var bookId =  document.querySelector('[name = "bookId"]').innerText
+
+   var currBook = gBooks.find(book => book.id === bookId) 
+
+        if(currBook.rate + value > 10 || currBook.rate + value < 0 )  return
+     
+        currBook.rate += value
+     
+      rate.innerText = currBook.rate
+      _saveBooksToStorage()
+  }
+
+
+
+
+  function nextPage() {
+  
+    if (gPageIdx < 3) gPageIdx++;
+    else gPageIdx = 0;
+}
+
+
+function lastPage() {
+  
+    if (gPageIdx > 1) gPageIdx--;
+    else gPageIdx = 0;
 }

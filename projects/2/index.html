@@ -6,20 +6,34 @@
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="libs/css/bootstrap.min.css">
     <title>Document</title>
 </head>
 
 <body onload="onInit()">
 
     <div name="read" class="read hide">
-        <button onclick="oncloseRead()">close</button>
+
         <h1>book name</h1>
+
+        <div class="dynamic-image"></div>
+        <div class="read-book-id">
+            <p>book ID:</p>
+            <p name="bookId"></p>
+        </div>
+
         <p>
             Lorem ipsum dolor sit amet consectetur adipisicing elit.
             Alias soluta eaque aut molestias voluptates eligendi nihil sequi qui.
             Quisquam distinctio molestias similique illo earum a adipisci odit repudiandae
             commodi eos.
         </p>
+        <div class="rate"> <button class=" btn btn-danger" onclick="onChangeRate(-1)">-</button>
+            <span class="rate-value">x</span>
+            <button class="btn btn-success" onclick="onChangeRate(1)">+</button></div>
+
+        <button class="btn btn-primary" onclick="oncloseRead()">close</button>
+
     </div>
     <div class="hide" name="updateModal">
 
@@ -27,38 +41,66 @@
         <p>book price:</p> <input name="book-price" type="number">
         <p>book img url:</p> <input name="book-img" type="text">
         <p>book id:</p> <input name="book-id" type="text">
-        <button onclick="updateModal()">Update</button>
-        <button onclick="hideModal()">close</button>
+
+        <button class="btn btn-warning" onclick="updateModal()">Update</button>
+        <button class="btn btn-info" onclick="hideModal()">close</button>
     </div>
 
 
 
     <div class="main-container">
+        <p>בחר שפה</p>
+        <select onchange="onSetLang(this.value)">
+            <option value="he">עברית</option>
+            <option value="en">English</option>
+        </select>
+
         <div class="add-book-form">
-            <button onclick="showToUserInput(this)">add new book</button>
+            <button class="btn btn-info" data-trans="addBook" onclick="showToUserInput(this)">add new book</button>
             <div name="name-price-image-forms" class="hide">
                 <input class="textInput" name="bookName" type="text" placeholder="enter book name">
                 <input class="textInput" name="bookPrice" type="number" placeholder="price">
                 <input class="textInput" name="imgURL" type="text" placeholder="image url">
-                <button onclick="addBookFromUser()" name="addBookBtn">add</button>
+                <button class="btn btn-info" onclick="addBookFromUser()" data-trans="add" name="addBookBtn">add</button>
             </div>
 
         </div>
-        <table>
+        <table class="table table-striped table-dark">
             <thead>
-                <th>id</th>
-                <th>name</th>
-                <th>image</th>
-                <th>price</th>
-                <th>Read</th>
-                <th>Update</th>
-                <th>Delete</th>
+                <th class="text-dark" data-trans="id">id</th>
+                <th class="text-dark" data-trans="name">name</th>
+                <th class="text-dark" data-trans="image">image</th>
+                <th class="text-dark" data-trans="price">price</th>
+                <th class="text-dark" data-trans="read">Read</th>
+                <th class="text-dark" data-trans="update">Update</th>
+                <th class="text-dark" data-trans="delete">Delete</th>
             </thead>
-            <tbody class="book-shop"></tbody>
+            <tbody class="book-shop table table-dark"></tbody>
+
         </table>
+        <div class="pages">
+            <button class="btn btn-dark" onclick="onNextPage()">Next Page &gt; </button>
+            <button class="btn btn-dark" onclick="onLastPage()">&lt; Previous Page </button>
+        </div>
+
 
     </div>
 
+
+
+
+
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+        integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+        crossorigin="anonymous"></script>
+
+    <script src="js/i18n-service.js"></script>
     <script src="js/utils-service.js"></script>
     <script src="js/storageService.js"></script>
     <script src="js/bookService.js"></script>
